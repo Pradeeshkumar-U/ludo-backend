@@ -1,0 +1,12 @@
+node_modules/
+ludo/
+.gemini/
+brain/
+*.log
+.env
+.vscode/
+.idea/
+*.exe
+*.dll
+*.so
+*.dylib
