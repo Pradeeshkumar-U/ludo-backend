@@ -10,3 +10,5 @@ brain/
 *.dll
 *.so
 *.dylib
+.gitignore
+*.md

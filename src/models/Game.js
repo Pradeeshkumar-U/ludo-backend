@@ -52,6 +52,7 @@ class Game {
 
     rollDice() {
         if (this.status !== 'PLAYING') return { error: 'Game not started' };
+        if (this.lastDiceRoll > 0) return { error: 'You have already rolled' };
 
         const roll = Math.floor(Math.random() * 6) + 1;
         this.lastDiceRoll = roll;
@@ -130,6 +131,8 @@ class Game {
         // Extra turn for 6 or for killing a piece
         if (roll !== 6 && !killed) {
             this.nextTurn();
+        } else {
+            this.lastDiceRoll = 0; // Allow rolling again for extra turn
         }
 
         return { success: true, game: this, killed };
@@ -141,6 +144,7 @@ class Game {
     }
 
     nextTurn() {
+        this.lastDiceRoll = 0;
         this.currentTurnIndex = (this.currentTurnIndex + 1) % this.players.length;
     }
 }

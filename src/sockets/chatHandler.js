@@ -13,4 +13,9 @@ module.exports = (io, socket) => {
         io.to(roomCode).emit('new_message', message);
         console.log(`Message sent in room ${roomCode} by ${playerName}: ${text}`);
     });
+    socket.on('send_emoji', (data) => {
+        const { roomCode, emoji } = data;
+        if (!roomCode || !emoji) return;
+        io.to(roomCode).emit('emoji_received', { emoji, playerId: socket.id });
+    });
 };
